@@ -7,7 +7,6 @@ function isEven(n)
         return false
 }
 
-
 function factorialIterative(n)
 {
     var s = 1;
@@ -23,7 +22,6 @@ function factorialIterative(n)
     return s;
 }
 
-
 function factorialRecursive(n)
 {
     // BASE CASE
@@ -34,7 +32,22 @@ function factorialRecursive(n)
         return n*factorialRecursive(n-1);
 }
 
+function kebabToSnake(_str)
+{
+    var new_str = '';
+    for(var i=0;i<_str.length;i++)
+    {
+        var _char = _str.charAt(i);
+        if (_char == '-')
+            new_str += '_';
+        else
+            new_str += _char;
+    }
+    return new_str;  
+}
+
 // Test
 console.log(isEven(4))
 console.log(factorialIterative(0))
 console.log(factorialRecursive(5))
+console.log(kebabToSnake("Peter-Lauro"))
