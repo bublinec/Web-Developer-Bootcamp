@@ -28,8 +28,16 @@ function sumArray(array)
     return s
 }
 
-
-
+function max(array)
+{
+    max = array[0]
+    for(var i=1; i<array.length; i++)
+    {
+        if(array[i] > max)
+            max = array[i]
+    }
+    return max
+}
 
 
 // Tests
@@ -37,3 +45,4 @@ printReverse([0,1,2,3,4,5]);
 console.log(isUniform([1,2,3,4,5]))
 console.log(isUniform([1,1,1,1,1]))
 console.log(sumArray([0,0,1,2,0,0]))
+console.log(max([1,2,3,4,5]))
