@@ -1,17 +1,14 @@
 function isEven(n)
 // Return True if n is even, Flase otherwise.
 {
-    if(n%2 == 0)
-        return true
-    else
-        return false
+    return (n%2 ===0);
 }
 
 function factorialIterative(n)
 {
     var s = 1;
     // corner case
-    if (n == 0)
+    if (n === 0)
         return 1;
     
     while(n>1)
@@ -25,7 +22,7 @@ function factorialIterative(n)
 function factorialRecursive(n)
 {
     // BASE CASE
-    if (n == 0)
+    if (n === 0)
         return 1;
     // INDUCTIVE STEP
     else
@@ -38,7 +35,7 @@ function kebabToSnake(_str)
     for(var i=0;i<_str.length;i++)
     {
         var _char = _str.charAt(i);
-        if (_char == '-')
+        if (_char === '-')
             new_str += '_';
         else
             new_str += _char;
