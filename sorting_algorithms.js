@@ -1,20 +1,23 @@
-
-
-
 function insertionSort(arr)
 {
-    len = arr.length;
+    var len = arr.length;
+    var min_i;
+
     for(var i=0;i<len;i++)
         {
-        console.log(arr.slice(i,len));
-            
-        min_i = _min(arr.slice(i,len))
-        // swap        
-        temp = arr[i]
-        arr[i] = arr[min_i]
-        arr[min_i] = temp
+        // find min
+        min_i = i;
+        for(var j=i;j<arr.length;j++)
+        {
+            if(arr[j] < arr[min_i])
+                min_i = j;     
         }
-    return arr
+        // swap        
+        temp = arr[i];
+        arr[i] = arr[min_i];
+        arr[min_i] = temp;
+        }
+    return arr;
 }
 
 
