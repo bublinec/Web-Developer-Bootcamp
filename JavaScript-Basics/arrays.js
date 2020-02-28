@@ -20,7 +20,7 @@ function isUniform(array)
 
 function sumArray(array)
 {
-    s = 0;
+    var s = 0;
     // for(var i=0; i<array.length; i++)
     // {
     //     s += array[i]
@@ -48,6 +48,19 @@ function max(array)
     });
 
     return max;
+}
+
+function _min(arr)
+// Return index of array min.
+{
+    min_i = 0
+    for(var i=1;i<arr.length;i++)
+    {
+        if(arr[i] < arr[min_i])
+            min_i = i;
+            
+    }
+    return min_i;
 }
 
 

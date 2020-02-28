@@ -18,8 +18,8 @@ movies = [
 
 function printMessage(movies)
 {
-    var message;
     movies.forEach(movie => {
+        var message;
         if(movie.seen == true)
             message = "You have seen ";
         else
