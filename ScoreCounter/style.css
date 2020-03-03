@@ -1,0 +1,82 @@
+@font-face{
+    font-family: myDigital;
+    src: url(digital-7.ttf);
+}
+
+@font-face{
+    font-family: myDigitalAlt;
+    src: url("DIGITALDREAM.ttf");
+}
+
+
+
+body {
+    background-color: black;
+    color: rgb(197, 19, 19);
+    font-family: myDigital;
+    text-align: center;
+    user-select: none;
+}
+
+h1 {
+    font-size: 15vw;
+    font-weight: 200;
+    margin: auto;
+    width: 8vw;
+    height: 11vw;
+}
+
+h2 {
+    font-size: 3vw;
+    font-weight: 200;
+
+}
+
+input {
+    width: 26vw;
+    font-family: myDigitalAlt;
+    font-weight: 200;
+    font-size: 4vw;
+    height: 7vw;
+    text-align: center;
+    margin-top: 3%;
+    background-color: black;
+    color: rgb(197, 19, 19);
+    border: none;
+    outline: none;
+}
+
+button{
+    width: 11vw;
+    height: 4vw;
+    font-family: myDigital;
+    padding-bottom: 6px;
+    margin: 6%;
+    font-size: 3vw;
+    background-color: black;
+    color: rgb(197, 19, 19);
+    border-color: rgb(197, 19, 19);
+    outline: none;
+}
+
+.score_panel {
+    padding-top: 5%;
+    width: 75%;
+    height: 20vw;
+    margin: auto;
+}
+
+.player_box {
+    float: left;
+    text-align: center;
+    width: 49%;
+    height: 100%;
+}
+
+.semicolon {
+    float: left;
+    margin-top: 10%;
+    width: 2%;
+}
+
+
