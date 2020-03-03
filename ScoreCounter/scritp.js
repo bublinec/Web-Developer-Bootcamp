@@ -17,48 +17,78 @@ player_two_tag.addEventListener("click", function(){
     player_two_tag.textContent = player_two_score;
 })
 
+
 // TIMER
-function toSec(time_arr)
-{   
-    return (3600*time_arr[0] + 60*time_arr[1] + time_arr[2])
-}
-
-function toHours(sec)
-{
-    var hours = ~~(sec/3600);
-    sec = sec % 3600;
-    var min = ~~(sec/60);
-    sec = sec % 60;
-    return [hours, min, sec]
-}
-
-
 var start = document.querySelectorAll("button")[0];
 
 start.addEventListener("click", function(){
     // get input
     var text_field = document.querySelector("input");
+    var time_str = text_field.value
 
-    // get time
-    time_str = text_field.value.trim()
-    len = time_str.length;
-    sec = parseInt(time_str.slice(len-2, len));
-    min = parseInt(time_str.slice(len-5,len-3));
-    if(len>5)
-        hours = parseInt(time_str.slice(0, len-6));
-    else
-        hours = 0;
-    time = [hours, min, sec];
+    // time object
+    var time = {
+        h       : h,
+        min     : min,
+        sec     : sec,
+
+        set     : function(time_str){
+            // Take string and set time according to it.
+            time_str = text_field.trim()
+            len = time_str.length;
+            this.sec = parseInt(time_str.slice(len-2, len));
+            min = parseInt(time_str.slice(len-5,len-3));
+            if(len>5)
+                this.h = parseInt(time_str.slice(0, len-6));
+            else
+                this.h= 0;
+        },
+
+        toSec   : function(){
+            return (3600*this.h + 60*this.min + time_arr[2])
+        },
+
+        toHours : function(){
+            this.h = ~~(this.sec/3600);
+            this.sec = this.sec % 3600;
+            this.min = ~~(this.sec/60);
+            this.sec = this.sec % 60;
+        }
+
+        toString : function(){
+
+        }
+        }
+}
+
     
-    var total_sec = toSec(time);
+    }
+
+
+
+
 
     // count down
     setInterval(function(){
         time = toHours(total_sec)
+    
+        // create output
         var output = "";        
         if(time[0] != 0)
-            output = time[0].toString() + ":"
+            output = time[0].toString() + ":";
+
+        if(time[1]<10)
+            output += "0"+time[1].toString()+":"
+        else
+            output += time[1].toString()+":"
+
+        if(time[1]<10)
+            output += "0"+time[1].toString()+":"
+        else
+            output += time[1].toString()+":"
+
         output += time[1].toString()+":"+time[2].toString()
+
         text_field.value = output;
         total_sec -= 1;
     }, 1000)
