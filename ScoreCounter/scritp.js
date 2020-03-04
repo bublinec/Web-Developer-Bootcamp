@@ -79,7 +79,7 @@ var time = {
 }
 
 var start_button = document.querySelectorAll("button")[0];
-var text_field = document.querySelectorAll("input")[2];
+var time_input = document.querySelectorAll("input")[2];
 var counting = false // to prevent multiple coutning
 var pause = false // to allow pause feture
 
@@ -89,6 +89,9 @@ start_button.addEventListener("click", function(){
     {
         pause = false;
         start_button.textContent = "PAUSE";
+        // in case it is changed while stopped
+        original_time = time_input.value;
+        time.set(time_input.value);
     } 
     else
     {
@@ -103,8 +106,8 @@ start_button.addEventListener("click", function(){
     if(counting)
         return false;
 
-    original_value = text_field.value
-    time.set(original_value);
+    original_time = time_input.value
+    time.set(original_time);
     counting = true
     start_button.textContent = "PAUSE";
     // count down
@@ -112,14 +115,14 @@ start_button.addEventListener("click", function(){
         if(pause)
             return false;
         time.decrement();
-        text_field.value = time.toString();
+        time_input.value = time.toString();
         if(time.isZero())
             clearInterval(timer);
     }, 1000)
 })
 
 // start on enter
-text_field.addEventListener("keyup", function(event) {
+time_input.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
         start_button.click();
     }
@@ -135,5 +138,8 @@ reset_button.addEventListener("click", function(){
     player_one_tag.textContent = player_one_score;
     player_two_tag.textContent = player_two_score;
     // reset timer
-    time.set(original_value);
+    pause = true;
+    start_button.textContent = "START";
+    time.set(original_time);
+    time_input.value = original_time;
 })
