@@ -1,3 +1,5 @@
+alert("Click on the name to change, click the number when scored.\n(for best experience press F11)\nENJOY!!!")
+
 // SCORE COUNTING
 var score = document.querySelectorAll("h1");
 
