@@ -1,4 +1,4 @@
-// Score counting
+// SCORE COUNTING
 var score = document.querySelectorAll("h1");
 
 var player_one_tag = score[0];
@@ -19,92 +19,121 @@ player_two_tag.addEventListener("click", function(){
 
 
 // TIMER
-var start = document.querySelectorAll("button")[0];
+// Define the time object:
+var time = {
+    h       : 0,
+    min     : 0,
+    sec     : 0,
 
-start.addEventListener("click", function(){
-    // get input
-    var text_field = document.querySelector("input");
-    var time_str = text_field.value
+    set     : function(time_str){
+        // Take string and set time according to it.
+        len = time_str.length;
+        this.sec = parseInt(time_str.slice(len-2, len));
+        if(len == 4)
+            this.min = parseInt(time_str.slice(len-4,len-3));
+        else
+            this.min = parseInt(time_str.slice(len-5,len-3));
+        if(len>5)
+            this.h = parseInt(time_str.slice(0, len-6));
+        else
+            this.h= 0;
+    },
 
-    // time object
-    var time = {
-        h       : h,
-        min     : min,
-        sec     : sec,
-
-        set     : function(time_str){
-            // Take string and set time according to it.
-            time_str = text_field.trim()
-            len = time_str.length;
-            this.sec = parseInt(time_str.slice(len-2, len));
-            min = parseInt(time_str.slice(len-5,len-3));
-            if(len>5)
-                this.h = parseInt(time_str.slice(0, len-6));
-            else
-                this.h= 0;
-        },
-
-        toSec   : function(){
-            return (3600*this.h + 60*this.min + time_arr[2])
-        },
-
-        toHours : function(){
-            this.h = ~~(this.sec/3600);
-            this.sec = this.sec % 3600;
-            this.min = ~~(this.sec/60);
-            this.sec = this.sec % 60;
+    decrement :function(n=1){
+        // Decrement time by n sec.
+        this.sec -= n;
+        if(this.sec < 0){
+            this.sec += 60;
+            this.min -= 1;
         }
-
-        toString : function(){
-
+        if(this.min < 0){
+            this.min += 60;
+            this.h -= 1;
         }
-        }
+    },
+
+    toString : function(){
+        // Return as a string.
+        var output = "";        
+        if(this.h != 0)
+            output += this.h.toString() + ":";
+        if(this.min < 10)
+            output += "0";
+        output += this.min.toString() + ":";
+        if(this.sec < 10)
+            output += "0";
+        output += this.sec.toString();
+        return output;
+    },
+
+    isZero : function(){
+        if(this.h == 0 && this.min == 0 && this.sec == 0)
+            return true;
+        else
+            return false;
+    },
+
+    toSec   : function(){
+        return (3600*this.h + 60*this.min + this.sec)
+    },
 }
 
-    
+var start_button = document.querySelectorAll("button")[0];
+var text_field = document.querySelectorAll("input")[2];
+var counting = false // to prevent multiple coutning
+var pause = false // to allow pause feture
+
+start_button.addEventListener("click", function(){ 
+    // pause feature 
+    if(pause)
+    {
+        pause = false;
+        start_button.textContent = "PAUSE";
+    } 
+    else
+    {
+        if(counting)
+        {
+            pause = true;
+            start_button.textContent = "START";
+        }
     }
 
+    // if already counting, do nothing
+    if(counting)
+        return false;
 
-
-
-
+    original_value = text_field.value
+    time.set(original_value);
+    counting = true
+    start_button.textContent = "PAUSE";
     // count down
-    setInterval(function(){
-        time = toHours(total_sec)
-    
-        // create output
-        var output = "";        
-        if(time[0] != 0)
-            output = time[0].toString() + ":";
-
-        if(time[1]<10)
-            output += "0"+time[1].toString()+":"
-        else
-            output += time[1].toString()+":"
-
-        if(time[1]<10)
-            output += "0"+time[1].toString()+":"
-        else
-            output += time[1].toString()+":"
-
-        output += time[1].toString()+":"+time[2].toString()
-
-        text_field.value = output;
-        total_sec -= 1;
+    var timer = setInterval(function(){
+        if(pause)
+            return false;
+        time.decrement();
+        text_field.value = time.toString();
+        if(time.isZero())
+            clearInterval(timer);
     }, 1000)
 })
 
+// start on enter
+text_field.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        start_button.click();
+    }
+});
 
 
-// Reset
-var reset = document.querySelectorAll("button")[1];
-
-reset.addEventListener("click", function(){
+// RESET
+var reset_button = document.querySelectorAll("button")[1];
+reset_button.addEventListener("click", function(){
+    // reset the score
     player_one_score = 0;
     player_two_score = 0;
     player_one_tag.textContent = player_one_score;
     player_two_tag.textContent = player_two_score;
+    // reset timer
+    time.set(original_value);
 })
-
-
-

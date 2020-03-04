@@ -9,7 +9,6 @@
 }
 
 
-
 body {
     background-color: black;
     color: rgb(197, 19, 19);
@@ -19,7 +18,7 @@ body {
 }
 
 h1 {
-    font-size: 15vw;
+    font-size: 14vw;
     font-weight: 200;
     margin: auto;
     width: 8vw;
@@ -39,7 +38,7 @@ input {
     font-size: 4vw;
     height: 7vw;
     text-align: center;
-    margin-top: 3%;
+    margin-top: 4%;
     background-color: black;
     color: rgb(197, 19, 19);
     border: none;
@@ -59,8 +58,9 @@ button{
     outline: none;
 }
 
+
 .score_panel {
-    padding-top: 5%;
+    padding-top: 2%;
     width: 75%;
     height: 20vw;
     margin: auto;
@@ -77,6 +77,13 @@ button{
     float: left;
     margin-top: 10%;
     width: 2%;
+}
+
+.player_box input{
+    width: 14vw;
+    height: 3vw;
+    font-size: 2vw;
+    margin-bottom: 4%;
 }
 
 
