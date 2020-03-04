@@ -1,4 +1,4 @@
-alert("Click on the name to change, click the number when scored.\n(for best experience press F11)\nENJOY!!!")
+// alert("Click on the name to change, click the number when scored.\n(for best experience press F11)\nENJOY!!!")
 
 // SCORE COUNTING
 var score = document.querySelectorAll("h1");
@@ -82,8 +82,8 @@ var time = {
 
 var start_button = document.querySelectorAll("button")[0];
 var time_input = document.querySelectorAll("input")[2];
-var counting = false // to prevent multiple coutning
-var pause = false // to allow pause feture
+var pause = true;
+var first_time = true;
 
 start_button.addEventListener("click", function(){ 
     // pause feature 
@@ -91,36 +91,31 @@ start_button.addEventListener("click", function(){
     {
         pause = false;
         start_button.textContent = "PAUSE";
-        // in case it is changed while stopped
-        original_time = time_input.value;
-        time.set(time_input.value);
+        time.set(time_input.value); // just for case it has been changed during the pause
     } 
     else
     {
-        if(counting)
-        {
-            pause = true;
-            start_button.textContent = "START";
-        }
+        pause = true;
+        start_button.textContent = "START";
     }
 
-    // if already counting, do nothing
-    if(counting)
-        return false;
+    // start timer only when running first time
+    if(first_time)
+    {   
+        first_time = false;
+        original_time = time_input.value
+        time.set(original_time);
 
-    original_time = time_input.value
-    time.set(original_time);
-    counting = true
-    start_button.textContent = "PAUSE";
-    // count down
-    var timer = setInterval(function(){
-        if(pause)
-            return false;
-        time.decrement();
-        time_input.value = time.toString();
-        if(time.isZero())
-            clearInterval(timer);
-    }, 1000)
+        // count down
+        var timer = setInterval(function(){
+            if(pause)
+                return false;
+            time.decrement();
+            time_input.value = time.toString();
+            if(time.isZero())
+                clearInterval(timer);
+        }, 1000)
+    }
 })
 
 // start on enter
@@ -129,7 +124,6 @@ time_input.addEventListener("keyup", function(event) {
         start_button.click();
     }
 });
-
 
 // RESET
 var reset_button = document.querySelectorAll("button")[1];
