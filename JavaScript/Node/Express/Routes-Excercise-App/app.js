@@ -16,27 +16,21 @@ app.get("/", function(req, res){
 
 // Animals
 app.get("/speak/:animal", function(req, res){
-    var animal = req.params.animal;
-    if(animal == "dog"){
-        res.send("woof! Woof!")
+    var animal = req.params.animal.toLowerCase();
+    var sounds = {
+        "dog": "Woof! Woof!",
+        "cat": "Meow.",
+        "cow": "Mooooo!",
+        "fish": "I hate you!",
+        "rabbit": "",
+        "sheep": "Beee!"
     }
-    if(animal == "cat"){
-        res.send("Meow")
-    }
-    if(animal == "cow"){
-        res.send("Moooo!")
-    }
-    if(animal == "sheep"){
-        res.send("Beeee!")
-    }
-    if(animal == "rabbit"){
-        res.send("")
-    }
+    res.send(animal + " sounds like: " + sounds[animal])
 })
 
 // Repeat print
 app.get("/repeat/:word/:n", function(req, res){
-    var n = parseInt(req.params.n);
+    var n = Number(req.params.n);
     var word = req.params.word;
     var response_str = "";
     for(var i=0; i<n;i++){
