@@ -63,6 +63,15 @@ function _min(arr)
     return min_i;
 }
 
+function average(arr){
+    var sum = 0
+    var len = arr.length
+    for(var i = 0; i<len; i++){
+        sum += arr[i]
+    }
+    return parseInt(sum/len) + 1
+}
+
 
 // Tests
 printReverse([0,1,2,3,4,5]);
@@ -70,3 +79,4 @@ console.log(isUniform([1,2,3,4,5]));
 console.log(isUniform([1,1,1,1,1]));
 console.log(sumArray([0,0,1,2,0,0]));
 console.log(max([1,2,3,4,5]));
+console.log(average([90, 89, 98, 100, 100, 86, 94]));
