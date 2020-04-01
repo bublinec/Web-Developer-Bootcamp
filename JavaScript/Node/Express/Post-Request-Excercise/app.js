@@ -2,7 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser"); // changes html into a DOM object
 var app = express();
-var port = 8000;
+var port = 8200;
 var friends = ["Samo", "Adam", "Majo", "Ander", "Danci"];
 
 app.set("view engine", "ejs"); // we don't have to write .ejs all the time
