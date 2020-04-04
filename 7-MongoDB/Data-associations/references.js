@@ -1,28 +1,11 @@
 const mongoose = require("mongoose");
+
+// REQUIRE MODULES (to get Post, User models)
+// (post needs to be first in order to be referenced in posts)
+var Post = require("./modules/post");
+    User = require("./modules/user");
+
 mongoose.connect("mongodb://localhost/demo2", {useNewUrlParser: true, useUnifiedTopology: true});
-
-
-// POST - title, content
-// (needs to be first in order to embed)
-var postSchema = new mongoose.Schema({
-    title: String,
-    content: String
-});
-var Post = mongoose.model("Post", postSchema);
-
-
-// USER - email, name
-var userSchema = new mongoose.Schema({
-    email: String,
-    name: String,
-    posts: [ // referenced data - array of id
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Post"
-        }
-    ]
-});
-var User = mongoose.model("User", userSchema);
 
 
 // ***************************************

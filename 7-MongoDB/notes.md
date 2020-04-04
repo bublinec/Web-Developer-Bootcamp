@@ -21,7 +21,7 @@ Quering commands:
 * update - use atr {$set: {name: "Peter"}} to not overwrite
 * remove
 
-### Mongoose 
+### Mongoose
 - node package (install using npm - node package manager)
 - ODM - object data modeling library
 - js layer on the top of mongoDb
@@ -35,4 +35,22 @@ Quering commands:
 
 * embedded data - one attribtue of a schema  is an array of schemas/models 
 * referenced objects - one attribute of a schema is an id of models
+
+<br>
+
+# MODULAR STRUCTURE
+- save each schema into separate file in the modules dir
+- require it in the app.js
+- in js we have modules and we require them, not files and imports
+=> we need to export ('return') model (object) from a module file
+
+### Why to use? 
+- less code in the app.js -> cleaner
+- modules are reusable, I don't have to copy the code into the different app, just import the module
+- separate interests (imagine big project, we can split jobs) 
+- conventional, professional approach
+
+(SEE references.js FOR EXAMPLE (not embedded.js))
+
+
 
