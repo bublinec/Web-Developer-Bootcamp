@@ -33,6 +33,6 @@ Quering commands:
 - one:many
 - many:many
 
-* embedded datat - nest schema inside other schema
-* referenced objects
+* embedded data - one attribtue of a schema  is an array of schemas/models 
+* referenced objects - one attribute of a schema is an id of models
 
