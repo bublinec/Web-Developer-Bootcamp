@@ -19,6 +19,8 @@ Post.create({
 }, function(err, post){
     User.findOne({email: "hermione@hogwarts.edu"}, function(err, found_user){
         // doesn't push whole post, just the id (yes it is quite clever)
+        console.log(found_user.posts);
+        
         found_user.posts.push(post)
         found_user.save(function(err, saved_user){
             console.log(saved_user);
