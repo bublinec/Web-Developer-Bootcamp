@@ -16,5 +16,9 @@ HTTP - state list protocol -> requests doesn't contain any info about state
 - those enable state info in http requests - wheteher someone is login or not
 => after I log in, every http req will contain state with piece of info such as: bublinec is logged in. When I log out, that state is gone - session expired.
 
+
+
 ## Side notes
 - if the route that form redirects to is not defined, browser just hungs and then timeout
+
+- **middle ware** function that runs before callback    
