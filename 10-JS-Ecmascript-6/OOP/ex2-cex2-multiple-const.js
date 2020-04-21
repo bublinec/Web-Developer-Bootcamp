@@ -72,3 +72,7 @@ var babetta = new Motorcycle("Babetta", "207", 1983)
 console.log(babetta);
 
 
+// PROTOTYPE DEMONSTRATION
+console.log(Motorcycle)
+console.log(Motorcycle.prototype.constructor);
+console.log(babetta.__proto__.constructor)
