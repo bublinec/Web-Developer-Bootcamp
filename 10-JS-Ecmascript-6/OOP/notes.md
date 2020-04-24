@@ -48,4 +48,3 @@ However
 - btw, length is not a method is a property of arr, and each value is a property as well
 - hasOwnPropert() is a method on the last part of the prototype chain
 - every object in JS has __proto__
-(see ex4)
