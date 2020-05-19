@@ -7,8 +7,8 @@
 * classes are abstract and modular so we can reuse and share them
 
 However
-* JS doesn't have classes built in (as Python/Java/C++ etc)
-* we use new + constructor function to create object
+* JS didn't used to have classes built in (as Python/Java/C++ etc)
+* we used new + constructor function to create object
 * which is just a functiona that creates a objects when called
 * name is capitalized - convention
 * we pass all arguments and then attach it to the created object using this
